@@ -48,6 +48,7 @@ System.out.println("Error: " + e);
     return conn;
 }
 %>
+<form name="algo" action="matto.jsp" method="get">
 <%
 Connection conexion = getConnection();
    if (!conexion.isClosed()){
@@ -57,15 +58,17 @@ out.write("OK");
       ResultSet rs = st.executeQuery("select * from libros" );
 
       // Ponemos los resultados en un table de html
-      out.println("<table border=\"1\"><tr><td>Num.</td><td>ISBN</td><td>Titulo</td><td>Acci�n</td></tr>");
+      out.println("<table border=\"1\"><tr><td>Num.</td><td>ISBN</td><td> Titulo </td><td>Acci�n</td></tr>");
       int i=1;
       while (rs.next())
       {
          out.println("<tr>");
          out.println("<td>"+ i +"</td>");
-         out.println("<td>"+rs.getString("isbn")+"</td>");
-         out.println("<td>"+rs.getString("titulo")+"</td>");
-         out.println("<td>"+"Actualizar<br>Eliminar"+"</td>");
+         String varisbn = rs.getString("isbn");
+         out.println("<td>"+varisbn+"</td>");
+         String url = "matto.jsp?Action=Eliminar&isbn="+varisbn;
+         %><td><%=rs.getString("titulo") %><%
+         %><td><a type="link" name="action" href="<%=url %>" value="Eliminar">Eliminar</a></td><%
          out.println("</tr>");
          i++;
       }

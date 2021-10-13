@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "java.sql.*" %>
+<%@ page language="java" import="java.lang.*" %>
  
 <%
 /* Paso 1) Obtener los datos del formulario */
